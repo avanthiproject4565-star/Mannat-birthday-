@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy 1st Birthday Mannat</title>
+<style>
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to bottom, #fff5f8, #fdf0ff);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1 {
+    padding: 30px 15px 10px 15px;
+    color: #b76e79;
+    font-size: 34px;
+}
+
+.message {
+    max-width: 500px;
+    margin: 20px auto 40px auto;
+    padding: 20px;
+    font-size: 18px;
+    color: #6d4c41;
+    line-height: 1.6;
+}
+
+.gallery {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.photo-card {
+    margin: 15px;
+    width: 280px;
+}
+
+img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+footer {
+    padding: 30px;
+    font-size: 16px;
+    color: #a26769;
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    color: #ff6fa5;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-800px); opacity: 0; }
+}
+
+/* Play Music Button */
+#playButton {
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 12px;
+    background: #ff6fa5;
+    color: white;
+    border: none;
+    margin: 20px 0;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>🎂 Happy 1st Birthday Mannat 👑</h1>
+
+<div class="message">
+To Our Little Princess Mannat 👑 <br><br>
+One year ago, our world became magical. <br><br>
+Today, as you turn ONE, we celebrate the joy, innocence, and happiness you bring into every heart. <br><br>
+May you always shine like a star and grow into the most beautiful soul. <br><br>
+With blessings from everyone who loves you 💫
+</div>
+
+<!-- Play Music Button -->
+<button id="playButton">🎵 Play Music</button>
+<audio id="birthdayMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="gallery" id="gallery">
+  <!-- Images will be added dynamically -->
+</div>
+
+<footer>
+Made with love 💖
+</footer>
+
+<script>
+// Dynamically add images (.jpeg)
+const totalPhotos = 12;
+const gallery = document.getElementById("gallery");
+
+for (let i = 1; i <= totalPhotos; i++) {
+    const card = document.createElement("div");
+    card.classList.add("photo-card");
+
+    const img = document.createElement("img");
+    img.src = `photo${i}.jpg`; // use .jpeg files
+    img.alt = `Photo ${i}`;
+    img.onerror = () => console.warn(`Image photo${i}.jpg not found!`);
+
+    card.appendChild(img);
+    gallery.appendChild(card);
+}
+
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 800);
+
+// Play music safely
+const music = document.getElementById("birthdayMusic");
+// Play music button
+document.getElementById("playButton").addEventListener("click", () => {
+    const music = document.getElementById("birthdayMusic");
+    music.play().catch(err => alert("Cannot play music. Make sure 'music.mp3' is in the same folder."));
+});
+</script>
+
+</body>
+</html>
